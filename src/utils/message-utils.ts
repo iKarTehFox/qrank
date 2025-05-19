@@ -1,4 +1,5 @@
 import DOMPurify from 'dompurify';
+import { Base64 } from 'js-base64';
 
 /**
  * Sanitizes a string to prevent XSS attacks by escaping HTML special characters
@@ -21,10 +22,10 @@ export function sanitizeText(text: string): string {
 export function encodeMessage(message: string): string {
     // Sanitize the message first
     const sanitizedMessage = sanitizeText(message);
-    // First convert to Base64
-    const base64 = btoa(sanitizedMessage);
-    // Then URL encode to make it safe for URLs
-    return encodeURIComponent(base64);
+    // Convert to URL-safe base64
+    const base64 = Base64.encode(sanitizedMessage, true);
+
+    return base64;
 }
 
 /**
@@ -37,8 +38,8 @@ export function decodeMessage(encoded: string): string {
         // First URL decode
         const base64 = decodeURIComponent(encoded);
         // Then convert from Base64
-        const decodedMessage = atob(base64);
-        // Sanitize the decoded message to be extra safe
+        const decodedMessage = Base64.decode(base64);
+        // Extra sanitization for safety
         return sanitizeText(decodedMessage);
     } catch (error) {
         console.error('Failed to decode message:', error);
