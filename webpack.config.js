@@ -14,7 +14,8 @@ const stylesHandler = isProduction ? MiniCssExtractPlugin.loader : 'style-loader
 const config = {
     entry: {
         main: './src/index.ts',
-        styles: './src/css/styles.ts'
+        styles: './src/css/styles.ts',
+        icons: './src/assets/icons/icons.ts'
     },
     output: {
         path: path.resolve(__dirname, 'dist'),

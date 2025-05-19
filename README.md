@@ -2,7 +2,7 @@
 
 > **A QR code generator web app which lets you generate a sharable link with any text you want, ideal for pranks or memes.**
 
-**Website:** [View in your browser](https://qrank.pages.dev)
+**Website:** [View in your browser](https://qranked.pages.dev)
 
 ## Highlights
 - **Easy Message Creation**: Enter any text message and instantly generate a QR code
