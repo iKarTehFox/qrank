@@ -7,7 +7,7 @@ export const menu = {
     messageInput: getElement<HTMLTextAreaElement>('messageInput'),
     generateBtn: getElement<HTMLButtonElement>('generateBtn'),
     qrcode: getElement<HTMLDivElement>('qrcode'),
-    shareLink: getElement<HTMLInputElement>('shareLink'),
+    shareLink: getElement<HTMLInputElement>('genField'),
     copyBtn: getElement<HTMLButtonElement>('copyBtn'),
     createNewBtn: getElement<HTMLButtonElement>('createNewBtn'),
     displayedMessage: getElement<HTMLDivElement>('displayedMessage'),
