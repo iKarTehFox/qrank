@@ -63,7 +63,7 @@ export async function generateQRCode(
 export function downloadQRCode(
     qrcodeElement: HTMLElement, 
     format: 'png' | 'svg' = 'png', 
-    filename: string = 'qrank-qrcode'
+    filename: string = `qrank-${Math.floor(Date.now() / 1000)}`
 ): void {
     if (format === 'png') {
         downloadAsPNG(qrcodeElement, `${filename}.png`);
