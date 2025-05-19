@@ -2,6 +2,8 @@
 
 > **A QR code generator web app which lets you generate a sharable link with any text you want, ideal for pranks or memes.**
 
+Pronounced "crank" /kɹæŋk/, it's simply "QR" mixed with "prank".
+
 **Website:** [View in your browser](https://qranked.pages.dev)
 
 ## Highlights
