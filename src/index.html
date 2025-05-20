@@ -7,7 +7,7 @@
         <link rel="icon" type="image/svg+xml" href="./icons/favicon.svg">
     </head>
     <body>
-        <div class="container py-5">
+        <div class="container py-5 prevent-select">
             <header class="text-center mb-5">
                 <h1 class="display-4">QRank</h1>
                 <p class="lead">Create shareable QR codes with funny prank messages</p>
@@ -43,14 +43,18 @@
                             </div>
                         </div>
                         <div class="d-grid gap-2">
-                            <div class="mb-2 d-flex justify-content-center gap-2">
+                            <div class="mb-2 d-flex justify-content-center gap-1">
                                 <button id="downloadPngBtn" class="btn btn-primary">
-                                    <i class="bi bi-download"></i> Download as PNG
+                                    <i class="bi bi-download"></i> Download PNG
                                 </button>
                                 <button id="downloadSvgBtn" class="btn btn-warning">
-                                    <i class="bi bi-download"></i> Download as SVG
+                                    <i class="bi bi-download"></i> Download SVG
                                 </button>
-                            </div>                            <button id="createNewBtn" class="btn btn-outline-primary">Create Another</button>
+                                <button id="previewLinkBtn" class="btn btn-secondary">
+                                    <i class="bi bi-eye"></i> Preview
+                                </button>
+                            </div>
+                            <button id="createNewBtn" class="btn btn-outline-primary">Create Another</button>
                         </div>
                     </div>
                 </div>

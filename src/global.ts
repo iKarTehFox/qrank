@@ -4,8 +4,12 @@ import { menu } from './utils/dom-elements';
 
 // Configuration
 const config = {
-    baseUrl: window.location.origin
+    baseUrl: window.location.origin,
+    maxMessageLength: 60,
 };
+
+// Global variables
+let shareableLink: string;
 
 /**
  * Copies the shareable link to clipboard
@@ -45,7 +49,7 @@ function showCreator(): void {
  * Shows the result section with generated QR code
  */
 function showResult(message: string): void {
-    const shareableLink = createShareableLink(message, config.baseUrl);
+    shareableLink = createShareableLink(message, config.baseUrl);
   
     // Generate QR code
     generateQRCode(shareableLink, menu.qrcode);
@@ -152,8 +156,8 @@ function handleGenerate(): void {
         return;
     }
 
-    if (message.length > 60) {
-        alert('Message is too long. Maximum length is 60 characters.');
+    if (message.length > config.maxMessageLength) {
+        alert(`Message is too long. Maximum length is ${config.maxMessageLength} characters.`);
         return;
     }
   
@@ -197,6 +201,9 @@ function init(): void {
     menu.downloadPngBtn.addEventListener('click', handleDownloadPng);
     menu.downloadSvgBtn.addEventListener('click', handleDownloadSvg);
     menu.createNewBtn.addEventListener('click', showCreator);
+    menu.previewBtn.addEventListener('click', () => {
+        window.open(shareableLink);
+    });
 }
 
 // Initialize when DOM is loaded

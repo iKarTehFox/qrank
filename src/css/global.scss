@@ -1,1 +1,10 @@
 @import "bootstrap/scss/bootstrap";
+$bootstrap-icons-font-dir: "bootstrap-icons/font/fonts";
+@import "bootstrap-icons/font/bootstrap-icons";
+
+// Custom CSS
+.prevent-select { 
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
