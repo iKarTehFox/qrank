@@ -5,7 +5,7 @@ import { menu } from './utils/dom-elements';
 // Configuration
 const config = {
     baseUrl: window.location.origin,
-    maxMessageLength: 60,
+    maxMessageLength: 120,
 };
 
 // Global variables
@@ -79,7 +79,7 @@ function showMessage(message: string): void {
     
     // Create a simple message display with large, centered text
     const messageElement = document.createElement('div');
-    messageElement.className = 'vh-100 d-flex flex-column justify-content-center align-items-center';
+    messageElement.className = 'd-flex flex-column justify-content-center align-items-center';
     
     // Create the message container structure
     const centerWrapper = document.createElement('div');
@@ -89,7 +89,7 @@ function showMessage(message: string): void {
     messageContainer.className = 'message-container p-4 rounded shadow-sm';
     
     const messageParagraph = document.createElement('p');
-    messageParagraph.className = 'display-1 fw-bold';
+    messageParagraph.className = `fw-bold ${message.length > 80 ? 'display-5' : 'display-1'}`;
     // Use innerHTML since we've (hopefully) already sanitized the message
     messageParagraph.innerHTML = message;
     
