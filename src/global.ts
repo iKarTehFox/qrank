@@ -67,6 +67,12 @@ function showResult(message: string): void {
  * Shows the message display section with large, centered text
  */
 function showMessage(message: string): void {
+    // Verify max length
+    if (message.length > config.maxMessageLength) {
+        alert(`Shared message is too long!\nMaximum length is ${config.maxMessageLength} characters. Got: ${message.length}`);
+        return;
+    }
+
     // Hide all main sections
     menu.creatorSection.classList.add('d-none');
     menu.resultSection.classList.add('d-none');
@@ -181,7 +187,10 @@ function handleDownloadSvg(): void {
 /**
  * Initialize the application
  */
-function init(): void {
+export function init(): void {
+    // Set max length for textarea
+    menu.messageInput.maxLength = config.maxMessageLength;
+
     // Check if there's a message in the URL
     const urlParams = new URLSearchParams(window.location.search);
     const encodedMessage = urlParams.get('m');
@@ -205,6 +214,3 @@ function init(): void {
         window.open(shareableLink);
     });
 }
-
-// Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', init);

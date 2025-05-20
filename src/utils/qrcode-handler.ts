@@ -25,6 +25,13 @@ export async function generateQRCode(
         };
     
         const mergedOptions = { ...defaultOptions, ...options };
+
+        // Verify data size
+        const textBlob = new Blob([text], { type: 'text/plain' });
+        const textSize = textBlob.size;
+        if (textSize > 2953) { // 2,953 byte maximum size
+            throw new Error('Text is too large to generate QR code');
+        }
     
         // Clear the element first
         while (element.firstChild) {
