@@ -1,6 +1,7 @@
 import { generateQRCode, downloadQRCode } from './utils/qrcode-handler';
-import { decodeMessage, createShareableLink } from './utils/message-utils';
+import { decodeMessage, createShareableLink, callMagic8Ball } from './utils/message-utils';
 import { menu } from './utils/dom-elements';
+import { url } from 'inspector';
 
 // Configuration
 const config = {
@@ -66,7 +67,7 @@ function showResult(message: string): void {
 /**
  * Shows the message display section with large, centered text
  */
-function showMessage(message: string): void {
+function showMessage(message: string, isMagic8: boolean = false): void {
     // Verify max length
     if (message.length > config.maxMessageLength) {
         alert(`Shared message is too long!\nMaximum length is ${config.maxMessageLength} characters. Got: ${message.length}`);
@@ -105,9 +106,9 @@ function showMessage(message: string): void {
     buttonContainer.className = 'mt-5';
     
     const createButton = document.createElement('a');
-    createButton.href = '/';
+    createButton.href = isMagic8 ? '/?mode=magic8' : '/';
     createButton.className = 'btn btn-primary';
-    createButton.textContent = 'Create Your Own QRank';
+    createButton.textContent = isMagic8 ? 'Try again':'Create Your Own QRank';
     
     const footerText = document.createElement('p');
     footerText.className = 'text-muted small mt-2';
@@ -191,14 +192,20 @@ export function init(): void {
     // Set max length for textarea
     menu.messageInput.maxLength = config.maxMessageLength;
 
-    // Check if there's a message in the URL
+    // Check URL parameters
     const urlParams = new URLSearchParams(window.location.search);
     const encodedMessage = urlParams.get('m');
+    const mode = urlParams.get('mode');
   
     if (encodedMessage) {
     // We have a message to display
+    // This takes priority over the mode
         const message = decodeMessage(encodedMessage);
-        showMessage(message);
+        showMessage(message, false);
+    } else if (mode === 'magic8') {
+        // Call the magic 8 ball
+        const message = callMagic8Ball();
+        showMessage(message, true);
     } else {
     // Show creator by default
         showCreator();
